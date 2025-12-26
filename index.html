@@ -1,11 +1,85 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Aldemir Games</title>
+<meta charset="UTF-8">
+<title>Aldemir Games</title>
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#0b0e13;
+  color:#fff;
+}
+header{
+  background:#111827;
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo{
+  font-size:24px;
+  font-weight:bold;
+}
+nav a{
+  color:#9ca3af;
+  margin-left:20px;
+  text-decoration:none;
+}
+.container{
+  padding:30px;
+}
+.games{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:20px;
+}
+.game{
+  background:#1f2937;
+  border-radius:10px;
+  overflow:hidden;
+  transition:0.3s;
+}
+.game:hover{
+  transform:scale(1.05);
+}
+.game img{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+}
+.game h3{
+  margin:10px;
+}
+.game p{
+  margin:0 10px 10px;
+  color:#9ca3af;
+}
+</style>
 </head>
+
 <body>
-  <h1>Aldemir Games</h1>
-  <p>Burada kendi yaptığımız oyunlar olacak.</p>
+
+<header>
+  <div class="logo">Aldemir Games</div>
+  <nav>
+    <a href="#">Oyunlar</a>
+    <a href="#">Oyun Yükle</a>
+  </nav>
+</header>
+
+<div class="container">
+  <h2>Oyunlar</h2>
+  <div class="games">
+
+    <div class="game">
+      <img src="https://via.placeholder.com/400x200">
+      <h3>Örnek Oyun</h3>
+      <p>Aksiyon</p>
+    </div>
+
+  </div>
+</div>
+
 </body>
 </html>
