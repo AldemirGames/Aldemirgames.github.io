@@ -55,12 +55,52 @@ nav a{
   margin:0 10px 10px;
   color:#9ca3af;
 }
+  .hero{
+  height:70vh;
+  background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+  url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  padding:40px;
+}
+.hero-text h1{
+  font-size:48px;
+}
+.hero-text p{
+  color:#d1d5db;
+  max-width:500px;
+}
+.btn{
+  display:inline-block;
+  margin-top:20px;
+  margin-right:10px;
+  padding:12px 20px;
+  background:#2563eb;
+  color:white;
+  text-decoration:none;
+  border-radius:6px;
+}
+.btn.secondary{
+  background:#374151;
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
+  <section class="hero">
+  <div class="hero-text">
+    <h1>Oyunlarını Dünyayla Paylaş</h1>
+    <p>Bağımsız geliştiriciler için ücretsiz oyun platformu</p>
+    <a class="btn" href="#games">Oyunları Keşfet</a>
+    <a class="btn secondary" href="upload.html">Oyun Yükle</a>
+  </div>
+</section>
+
   <div class="logo">Aldemir Games</div>
   <nav>
     <a href="#">Oyunlar</a>
