@@ -23,47 +23,37 @@
   </form>
 
   <script>
-    <script>
-const form = document.getElementById('uploadForm');
-
-form.addEventListener('submit', e => {
-  e.preventDefault();
-
-  // Form verilerini al
-  const ad = form.querySelector('input[placeholder="Oyun Adı"]').value;
-  const kategori = form.querySelector('input[placeholder="Kategori (ör. action, openworld)"]').value;
-  const gorsel = form.querySelector('input[placeholder="Oyun Görsel URL"]').value;
-  const dosyaLinki = form.querySelector('input[placeholder="Oyun Dosyası Linki (Dropbox, Google Drive, vs)"]').value;
-
-  // Oyun kartını oluştur
-  const oyunKart = `
-    <div class="game" data-category="${kategori}">
-      <img src="${gorsel}" alt="${ad}">
-      <h3>${ad}</h3>
-      <p>${kategori}</p>
-      <a href="${dosyaLinki}" download>
-        <button>Oyunu İndir</button>
-      </a>
-    </div>
-  `;
-
-  // Sayfadaki oyun listesine ekle
-  // Eğer index.html’deki oyunları gösterecek container’ı kullanacaksak:
-  const container = document.querySelector('.games');
-  if(container) {
-    container.innerHTML += oyunKart;
-  }
-
-  // Formu temizle
-  form.reset();
-  alert('Oyun başarıyla eklendi!');
-});
-</script>
-
     const form = document.getElementById('uploadForm');
+
     form.addEventListener('submit', e => {
       e.preventDefault();
-      alert('Oyun ekleme işlemi şimdilik test için aktif değil, sadece placeholder.');
+
+      // Form verilerini al
+      const ad = form.querySelector('input[placeholder="Oyun Adı"]').value;
+      const kategori = form.querySelector('input[placeholder="Kategori (ör. action, openworld)"]').value;
+      const gorsel = form.querySelector('input[placeholder="Oyun Görsel URL"]').value;
+      const dosyaLinki = form.querySelector('input[placeholder="Oyun Dosyası Linki (Dropbox, Google Drive, vs)"]').value;
+
+      // Oyun kartını oluştur
+      const oyunKart = `
+        <div class="game" data-category="${kategori}">
+          <img src="${gorsel}" alt="${ad}">
+          <h3>${ad}</h3>
+          <p>${kategori}</p>
+          <a href="${dosyaLinki}" download>
+            <button>Oyunu İndir</button>
+          </a>
+        </div>
+      `;
+
+      // Sayfadaki oyun listesine ekle
+      const container = document.querySelector('.games');
+      if(container) {
+        container.innerHTML += oyunKart;
+      }
+
+      // Formu temizle
+      form.reset();
     });
   </script>
 </body>
