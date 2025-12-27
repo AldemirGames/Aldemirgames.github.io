@@ -12,6 +12,14 @@ body{
   font-family: Arial, sans-serif;
   background:#0b0e13;
   color:#fff;
+  <script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js')
+    .then(()=>console.log('SW Registered'))
+    .catch(err=>console.log('SW Error', err));
+}
+</script>
+
 }
 header{
   background:#111827;
