@@ -1,51 +1,162 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <link rel="manifest" href="manifest.json">
-
-
-<meta charset="UTF-8">
-<title>Aldemir Games</title>
+  <meta charset="UTF-8">
+  <title>Aldemir Games</title>
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="manifest" href="manifest.json">
 
-<style>
-body{
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#0b0e13;
-  color:#fff;
-  <script>
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('sw.js')
-    .then(()=>console.log('SW Registered'))
-    .catch(err=>console.log('SW Error', err));
-}
-</script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0e13;
+      color: #fff;
+    }
 
-  <button id="installBtn" style="position:fixed;bottom:20px;right:20px;padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:6px;cursor:pointer;z-index:999;">Uygulamayı Kur</button>
-  <script>
-let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = 'block';
-});
+    header {
+      background:#111827;
+      padding:20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
 
-installBtn.addEventListener('click', async () => {
-  installBtn.style.display = 'none';
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    console.log('User choice:', outcome);
-    deferredPrompt = null;
-  }
-});
-</script>
-  <button id="installBtn" style="position:fixed;bottom:20px;right:20px;padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:6px;cursor:pointer;z-index:999; display:none;">
-Uygulamayı Kur
+    .logo {
+      font-size:26px;
+      font-weight:bold;
+      display:flex;
+      align-items:center;
+    }
+
+    .logo-icon {
+      color:#3b82f6;
+      margin-right:8px;
+      font-size:22px;
+    }
+
+    .logo span {
+      color:#9ca3af;
+    }
+
+    nav a {
+      color:#9ca3af;
+      margin-left:20px;
+      text-decoration:none;
+    }
+
+    .container {
+      padding:30px;
+    }
+
+    .games {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+      gap:20px;
+    }
+
+    .game {
+      background:#1f2937;
+      border-radius:10px;
+      overflow:hidden;
+      transition:0.3s;
+    }
+
+    .game:hover {
+      transform:scale(1.05);
+    }
+
+    .game img {
+      width:100%;
+      height:140px;
+      object-fit:cover;
+    }
+
+    .game h3 {
+      margin:10px;
+    }
+
+    .game p {
+      margin:0 10px 10px;
+      color:#9ca3af;
+    }
+
+    .hero {
+      height:70vh;
+      background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+      url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      padding:40px;
+    }
+
+    .hero-text h1 {
+      font-size:48px;
+    }
+
+    .hero-text p {
+      color:#d1d5db;
+      max-width:500px;
+    }
+
+    .btn {
+      display:inline-block;
+      margin-top:20px;
+      margin-right:10px;
+      padding:12px 20px;
+      background:#2563eb;
+      color:white;
+      text-decoration:none;
+      border-radius:6px;
+    }
+
+    .btn.secondary {
+      background:#374151;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="logo-icon">▲</span> Aldemir<span>Games</span>
+  </div>
+  <nav>
+    <a href="index.html">Oyunlar</a>
+    <a href="login.html">Giriş</a>
+  </nav>
+</header>
+
+<!-- Hero Bölümü -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Oyunlarını Dünyayla Paylaş</h1>
+    <p>Bağımsız geliştiriciler için ücretsiz oyun platformu</p>
+    <a class="btn" href="#games">Oyunları Keşfet</a>
+    <a class="btn secondary" href="upload.html">Oyun Yükle</a>
+  </div>
+</section>
+
+<!-- Oyunlar Bölümü -->
+<div class="container" id="games">
+  <h2>Oyunlar</h2>
+  <div class="games">
+    <div class="game">
+      <img src="https://via.placeholder.com/400x200">
+      <h3>Örnek Oyun</h3>
+      <p>Aksiyon</p>
+    </div>
+  </div>
+</div>
+
+<!-- PWA Kur Butonu -->
+<button id="installBtn" style="position:fixed;bottom:20px;right:20px;padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:6px;cursor:pointer;z-index:999; display:none;">
+  Uygulamayı Kur
 </button>
+
+<!-- PWA ve Service Worker Script -->
 <script>
 let deferredPrompt;
 const installBtn = document.getElementById('installBtn');
@@ -65,138 +176,13 @@ installBtn.addEventListener('click', async () => {
     deferredPrompt = null;
   }
 });
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js')
+    .then(() => console.log('SW Registered'))
+    .catch(err => console.log('SW Error', err));
+}
 </script>
-
-
-
-}
-header{
-  background:#111827;
-  padding:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.logo{
-  font-size:24px;
-  font-weight:bold;
-}
-nav a{
-  color:#9ca3af;
-  margin-left:20px;
-  text-decoration:none;
-}
-.container{
-  padding:30px;
-}
-.games{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:20px;
-}
-.game{
-  background:#1f2937;
-  border-radius:10px;
-  overflow:hidden;
-  transition:0.3s;
-}
-.game:hover{
-  transform:scale(1.05);
-}
-.game img{
-  width:100%;
-  height:140px;
-  object-fit:cover;
-}
-.game h3{
-  margin:10px;
-}
-.game p{
-  margin:0 10px 10px;
-  color:#9ca3af;
-}
-  .hero{
-  height:70vh;
-  background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-  url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
-  background-size:cover;
-  background-position:center;
-  display:flex;
-  align-items:center;
-  padding:40px;
-}
-.hero-text h1{
-  font-size:48px;
-}
-.hero-text p{
-  color:#d1d5db;
-  max-width:500px;
-}
-.btn{
-  display:inline-block;
-  margin-top:20px;
-  margin-right:10px;
-  padding:12px 20px;
-  background:#2563eb;
-  color:white;
-  text-decoration:none;
-  border-radius:6px;
-}
-.btn.secondary{
-  background:#374151;
-}
-.logo{
-  font-size:26px;
-  font-weight:bold;
-  display:flex;
-  align-items:center;
-}
-.logo-icon{
-  color:#3b82f6;
-  margin-right:8px;
-  font-size:22px;
-}
-.logo span{
-  color:#9ca3af;
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-  <section class="hero">
-  <div class="hero-text">
-    <h1>Oyunlarını Dünyayla Paylaş</h1>
-    <p>Bağımsız geliştiriciler için ücretsiz oyun platformu</p>
-    <a class="btn" href="#games">Oyunları Keşfet</a>
-    <a class="btn secondary" href="upload.html">Oyun Yükle</a>
-  </div>
-</section>
-  <div class="logo">
-  <span class="logo-icon">▲</span> Aldemir<span>Games</span>
-</div>
-<nav>
-  <a href="index.html">Oyunlar</a>
-  <a href="login.html">Giriş</a>
-</nav>
-
- 
-</header>
-
-<div class="container">
-  <h2>Oyunlar</h2>
-  <div class="games">
-
-    <div class="game">
-      <img src="https://via.placeholder.com/400x200">
-      <h3>Örnek Oyun</h3>
-      <p>Aksiyon</p>
-    </div>
-
-  </div>
-</div>
 
 </body>
 </html>
