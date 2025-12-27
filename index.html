@@ -115,6 +115,29 @@
     .btn.secondary {
       background:#374151;
     }
+    .categories {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  padding: 8px 16px;
+  border: none;
+  background: #1f2937;
+  color: #9ca3af;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.category-btn:hover,
+.category-btn.active {
+  background: #2563eb;
+  color: #fff;
+}
+
   </style>
   <script type="application/ld+json">
 {
@@ -150,6 +173,16 @@
 </section>
 
 <!-- Oyunlar Bölümü -->
+  <!-- Kategori Çubuğu -->
+<div class="categories">
+  <button class="category-btn active" data-category="all">Tümü</button>
+  <button class="category-btn" data-category="openworld">Açık Dünya</button>
+  <button class="category-btn" data-category="action">Aksiyon</button>
+  <button class="category-btn" data-category="casual">Basit Eğlence</button>
+  <button class="category-btn" data-category="free">Oynaması Ücretsiz</button>
+  <button class="category-btn" data-category="strategy">Strateji</button>
+</div>
+
 <div class="container" id="games">
   <h2>Oyunlar</h2>
   <div class="games">
