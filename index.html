@@ -150,6 +150,39 @@
 </script>
 
 </head>
+  <script>
+// Tüm kategori butonlarını al
+const categoryBtns = document.querySelectorAll('.category-btn');
+// Tüm oyun kartlarını al
+const games = document.querySelectorAll('.game');
+
+// Butonlara tıklama olayını ekle
+categoryBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Önce tüm butonlardan active sınıfını kaldır
+    categoryBtns.forEach(b => b.classList.remove('active'));
+    // Tıklanan butona active sınıfını ekle
+    btn.classList.add('active');
+
+    const category = btn.getAttribute('data-category');
+
+    games.forEach(game => {
+      // Eğer "all" seçiliyse tüm oyunları göster
+      if(category === 'all') {
+        game.style.display = 'block';
+      } else {
+        // Oyun kartının data-category attribute'u ile karşılaştır
+        if(game.getAttribute('data-category') === category) {
+          game.style.display = 'block';
+        } else {
+          game.style.display = 'none';
+        }
+      }
+    });
+  });
+});
+</script>
+
 <body>
 
 <header>
