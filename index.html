@@ -3,6 +3,7 @@
 <head>
   <link rel="manifest" href="manifest.json">
 
+
 <meta charset="UTF-8">
 <title>Aldemir Games</title>
   <link rel="icon" type="image/png" href="logo.png">
@@ -42,6 +43,30 @@ installBtn.addEventListener('click', async () => {
   }
 });
 </script>
+  <button id="installBtn" style="position:fixed;bottom:20px;right:20px;padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:6px;cursor:pointer;z-index:999; display:none;">
+Uygulamayı Kur
+</button>
+<script>
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'block';
+});
+
+installBtn.addEventListener('click', async () => {
+  installBtn.style.display = 'none';
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log('User choice:', outcome);
+    deferredPrompt = null;
+  }
+});
+</script>
+
 
 
 }
