@@ -9,11 +9,66 @@
     h1 { color:#2563eb; }
     input, button { padding:10px; margin:5px 0; border-radius:6px; border:none; }
     button { background:#2563eb; color:white; cursor:pointer; }
+    
+    /* Kategori Butonları Stil */
+    .categories {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      padding: 8px 16px;
+      border: none;
+      background: #1f2937;
+      color: #9ca3af;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: #2563eb;
+      color: #fff;
+    }
+
+    /* Oyun Kartları Stil */
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .game {
+      background:#1f2937;
+      border-radius:10px;
+      overflow:hidden;
+      padding:10px;
+      transition:0.3s;
+    }
+
+    .game:hover { transform: scale(1.05); }
+    .game img { width:100%; height:140px; object-fit:cover; }
+    .game h3 { margin:10px 0 5px; }
+    .game p { margin:0 0 10px; color:#9ca3af; }
+    .game button {
+      width:100%;
+      padding:10px;
+      background:#2563eb;
+      color:white;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+    }
   </style>
 </head>
 <body>
   <h1>Oyun Yükle</h1>
   <p>Bu alandan oyun ekleyebilirsin.</p>
+
+  <!-- Oyun Ekleme Formu -->
   <form id="uploadForm">
     <input type="text" placeholder="Oyun Adı" required><br>
     <input type="text" placeholder="Kategori (ör. action, openworld)" required><br>
@@ -21,10 +76,21 @@
     <input type="url" placeholder="Oyun Görsel URL" required><br>
     <button type="submit">Oyunu Ekle</button>
   </form>
+
+  <!-- Eklenen Oyunlar ve Kategori Butonları -->
   <h2>Eklenen Oyunlar (Test)</h2>
-<div class="games"></div>
 
+  <div class="categories">
+    <button class="category-btn" data-category="all">Tümü</button>
+    <button class="category-btn" data-category="action">Action</button>
+    <button class="category-btn" data-category="openworld">Open World</button>
+    <button class="category-btn" data-category="free">Free</button>
+    <button class="category-btn" data-category="strategy">Strategy</button>
+  </div>
 
+  <div class="games"></div>
+
+  <!-- JS: Oyun Ekleme ve Kategori Filtreleme -->
   <script>
     const form = document.getElementById('uploadForm');
 
@@ -51,12 +117,30 @@
 
       // Sayfadaki oyun listesine ekle
       const container = document.querySelector('.games');
-      if(container) {
-        container.innerHTML += oyunKart;
-      }
+      if(container) { container.innerHTML += oyunKart; }
 
       // Formu temizle
       form.reset();
+    });
+
+    // Kategori Filtreleme
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    categoryButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.dataset.category;
+        const oyunlar = document.querySelectorAll('.game');
+        oyunlar.forEach(oyun => {
+          if(category === 'all' || oyun.dataset.category === category){
+            oyun.style.display = 'block';
+          } else {
+            oyun.style.display = 'none';
+          }
+        });
+
+        // Aktif buton stilini ayarla
+        categoryButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
     });
   </script>
 </body>
